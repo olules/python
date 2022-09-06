@@ -24,7 +24,7 @@ def is_valid(puzzle, guess, row, col):
     return True 
         
     
-def solve_soduku(puzzle):
+def solve_sodoku(puzzle):
     row,col = find_next_empty(puzzle)
     
     if row is None:
@@ -33,11 +33,23 @@ def solve_soduku(puzzle):
     for guess in range(1,10):
         if is_valid(puzzle, guess, row, col):
             puzzle[row][col]=guess
-            if solve_soduku(puzzle):
+            if solve_sodoku(puzzle):
                 return True
         puzzle[row][col]=-1
     return False
-if __name__ =='__main__':
+if __name__ == '__main__':
     example_board = [
-        
+        [3, 9, -1,   -1, 5, -1,   -1, -1, -1],
+        [-1, -1, -1,   2, -1, -1,   -1, -1, 5],
+        [-1, -1, -1,   7, 1, 9,   -1, 8, -1],
+
+        [-1, 5, -1,   -1, 6, 8,   -1, -1, -1],
+        [2, -1, 6,   -1, -1, 3,   -1, -1, -1],
+        [-1, -1, -1,   -1, -1, -1,   -1, -1, 4],
+
+        [5, -1, -1,   -1, -1, -1,   -1, -1, -1],
+        [6, 7, -1,   1, -1, 5,   -1, 4, -1],
+        [1, -1, 9,   -1, -1, -1,   2, -1, -1]
     ]
+    print(solve_sodoku(example_board))
+    print(example_board)
